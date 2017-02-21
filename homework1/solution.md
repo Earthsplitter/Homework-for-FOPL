@@ -41,3 +41,19 @@ For example, we can trans 'a' to 1, 'b' to 2 and so on.
 **Line 2** The base case: if the tree is a (Leaf a), just return this Leaf.
 
 **Line 3** If it is a Node, call f with the results of (reduce f left/right) as parameters(as the tree shows in the problem)
+
+#6. Currying
+
+#####(a)
+
+```haskell
+curry :: ((a,b) -> c) -> (a -> (b -> c))
+curry f = g
+    where g a b = f (a,b)
+
+uncurry :: (a -> (b -> c)) -> ((a,b) -> c)
+uncurry f = g
+    where g (a,b) = f a b
+```
+
+#####(b)
