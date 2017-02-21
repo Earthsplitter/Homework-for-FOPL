@@ -55,7 +55,7 @@ uncurry f (a,b) = f a b
 ```
 
 #####(b)
-Prove as following:
+Demonstration as following:
 ```
 curry (uncurry f) =                       (* by definition of uncurry *)
 curry (fn (x,y) -> f x y) =               (* by definition of curry *)
@@ -63,3 +63,32 @@ fn x y -> ((fn (x,y) -> f x y) (x,y)) =   (* beta-reduction on innermost level *
 fn x y -> (f x y) =                       (* by eta-expansion *)
 f
 ```
+
+#7. Infinite Data Structures
+
+#####(a)
+
+```haskell
+evens :: [Int]
+evens = [ 2*x | x <- [1..]]
+odds :: [Int]
+odds = [2*x+1 | x <- [0..]]
+```
+
+#####(b)
+
+```haskell
+merge :: [Int] -> [Int] -> [Int]
+merge a [] = a
+merge [] b = b
+merge (x:xs) (y:ys)
+    | x <= y = x:merge xs (y:ys)
+    | otherwise = y:merge (x:xs) ys
+
+```
+
+#####(c)
+
+Obviously, the call will never terminate. For infinite list, here will never
+ achieve the base case, namely, `merge a []` or `merge b []`, so it will keep running
+ until you click the close button.
