@@ -47,13 +47,19 @@ For example, we can trans 'a' to 1, 'b' to 2 and so on.
 #####(a)
 
 ```haskell
-curry :: ((a,b) -> c) -> (a -> (b -> c))
-curry f = g
-    where g a b = f (a,b)
+curry :: ((a,b) -> c) -> a -> b -> c
+curry f a b = f (a,b)
 
-uncurry :: (a -> (b -> c)) -> ((a,b) -> c)
-uncurry f = g
-    where g (a,b) = f a b
+uncurry :: (a -> (b -> c)) -> (a,b) -> c
+uncurry f (a,b) = f a b
 ```
 
 #####(b)
+Prove as following:
+```
+curry (uncurry f) =                       (* by definition of uncurry *)
+curry (fn (x,y) -> f x y) =               (* by definition of curry *)
+fn x y -> ((fn (x,y) -> f x y) (x,y)) =   (* beta-reduction on innermost level *)
+fn x y -> (f x y) =                       (* by eta-expansion *)
+f
+```
