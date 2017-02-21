@@ -89,6 +89,6 @@ merge (x:xs) (y:ys)
 
 #####(c)
 
-Obviously, the call will never terminate. For infinite list, here will never
- achieve the base case, namely, `merge a []` or `merge b []`, so it will keep running
- until you click the close button.
+Obviously, the call will never terminate. For infinite list, it will never
+achieve the base case, namely, `merge a []` or `merge b []`, so it will keep running
+until you click the close button.
