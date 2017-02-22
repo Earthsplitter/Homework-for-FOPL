@@ -55,13 +55,19 @@ uncurry f (a,b) = f a b
 ```
 
 #####(b)
-Demonstration as following:
+Demonstration as following, using lambda calculus:
 ```
-curry (uncurry f) =                       (* by definition of uncurry *)
-curry (fn (x,y) -> f x y) =               (* by definition of curry *)
-fn x y -> ((fn (x,y) -> f x y) (x,y)) =   (* beta-reduction on innermost level *)
-fn x y -> (f x y) =                       (* by eta-expansion *)
-f
+let f: λa.λb.a+b(any operation is ok)
+
+curry: λf.λa.λb.f (a,b)
+uncurry: λf.λ(a,b).f a b
+
+uncurry f = λ(a,b).f a b               
+curry(uncurry f) = λf.λa.λb.f (a,b) (λ(a,b).f a b)
+                 = λa.λb.λ(a,b).f a b (a,b)
+                 = λa.λb.f a b
+                 = λa.λb.a+b
+                 = f
 ```
 
 #7. Infinite Data Structures
