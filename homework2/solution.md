@@ -1,5 +1,5 @@
 
-#1. Lambda Calculus Reduction
+# 1. Lambda Calculus Reduction
 
 Right Answer with Renaming Bound Variable:
 
@@ -19,7 +19,7 @@ Wrong Answer without Renaming:
 =>  λq.λr.r r r
 ```
 
-#2. Translation into Lambda Calculus
+# 2. Translation into Lambda Calculus
 
 Lambda calculus of function f:
 
@@ -35,37 +35,37 @@ apply f to f:
 =>  ......   never terminate
 ```
 
-#3. Lazy Evaluation and Parallelism
+# 3. Lazy Evaluation and Parallelism
 
-#####(a)
+##### (a)
 
 It is possible to happen. As we can see from the definition of `g`, the test `x+y = 0` need the result of e<sub>1</sub> and e<sub>2</sub>.
 
-#####(b)
+##### (b)
 
 In lazy evaluation mode, this program works well, since it will never need the result of e<sub>2</sub>.
 
 In parallel evaluation mode, It also works fine. The evaluation of `x+y = 0`(need `x` firstly) is behind the evaluation of `x = 0`.
 
-#####(c)
+##### (c)
 
 It just evaluate `g` and return (since it do not need e<sub>2</sub>). The error is unimportant if it won't terminate the program.
 
-#####(d)
+##### (d)
 
 Cannot do it in parallel. Since the order of expressions will affect the result of the program.
 
-#4. Modifying functional programs
+# 4. Modifying functional programs
 
-#####(a)
+##### (a)
 
 The first element
 
-#####(b)
+##### (b)
 
 Of course Haskell. It is much shorter than that of C. It saves my life.
 
-#####(c)
+##### (c)
 
 ```haskell
 qsort []     = []
@@ -73,18 +73,18 @@ qsort (x:xs) = qsort (filter (< x) xs) ++ [x] ++ qsort
 (filter (>= x) xs)
 ```
 
-#####(d)
+##### (d)
 
 Just get a random number m(`m = rand()`), and choose `a[m%a.length]` as pivot.
 
-#####(e)
+##### (e)
 
 I think it will be `O(nlogn)` totally. Since every recursion it requires a new array to sort.
 Anyway, the minimum is `2n` because of GC will release unused memory.
 
-#5. Operational Semantics
+# 5. Operational Semantics
 
-#####(a)
+##### (a)
 
 ```
     <x + y, σ>
@@ -93,7 +93,7 @@ Anyway, the minimum is `2n` because of GC will release unused memory.
 ->  <5, σ>          ## n+m → p
 ```
 
-#####(b)
+##### (b)
 
 ```
     <x = x + 3, σ>
@@ -102,7 +102,7 @@ Anyway, the minimum is `2n` because of GC will release unused memory.
 ->  <4, Put(σ, x, 4)>   ## Put rule
 ```
 
-#####(c)
+##### (c)
 
 ```
     <(x = 3) + x, σ>
@@ -111,7 +111,7 @@ Anyway, the minimum is `2n` because of GC will release unused memory.
 ->  <6, σ'>                     ## n+m → p
 ```
 
-#####(d)
+##### (d)
 
 ```
     <x = (x = x + 3) + (x = x + 5), σ>

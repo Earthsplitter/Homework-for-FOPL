@@ -1,7 +1,7 @@
 
-#4. Haskell Map for Trees
+# 4. Haskell Map for Trees
 
-#####(a)
+##### (a)
 
 ```haskell
 data Tree a = Leaf a | Node (Tree a) (Tree a) deriving (Show)
@@ -9,13 +9,13 @@ maptree f (Leaf a) = Leaf (f a)
 maptree f (Node left right) = Node (maptree f left) (maptree f right) 
 ```
 
-#####(b)
+##### (b)
 
 **Line 2** The base case: if the tree is a (Leaf a), return a new Leaf f(a).
 
 **Line 3** If it is a Node, call (maptree f) on its children.
 
-#####(c)
+##### (c)
 
 ```haskell
     :t maptree
@@ -26,9 +26,9 @@ Obviously, it cannot be (t -> t), since we do not require that new Tree store th
 
 For example, we can trans 'a' to 1, 'b' to 2 and so on.
 
-#5. Haskell Reduce for Trees
+# 5. Haskell Reduce for Trees
 
-#####(a)
+##### (a)
 
 ```haskell
     reduce :: (a -> a -> a) -> Tree a -> a
@@ -42,9 +42,9 @@ For example, we can trans 'a' to 1, 'b' to 2 and so on.
 
 **Line 3** If it is a Node, call f with the results of (reduce f left/right) as parameters(as the tree shows in the problem)
 
-#6. Currying
+# 6. Currying
 
-#####(a)
+##### (a)
 
 ```haskell
 curry :: ((a,b) -> c) -> a -> b -> c
@@ -54,7 +54,7 @@ uncurry :: (a -> (b -> c)) -> (a,b) -> c
 uncurry f (a,b) = f a b
 ```
 
-#####(b)
+##### (b)
 Demonstration as following, using lambda calculus:
 ```
 let f: λa.λb.a+b(any operation is ok)
@@ -70,9 +70,9 @@ curry(uncurry f) = λf.λa.λb.f (a,b) (λ(a,b).f a b)
                  = f
 ```
 
-#7. Infinite Data Structures
+# 7. Infinite Data Structures
 
-#####(a)
+##### (a)
 
 ```haskell
 evens :: [Int]
@@ -81,7 +81,7 @@ odds :: [Int]
 odds = [2*x+1 | x <- [0..]]
 ```
 
-#####(b)
+##### (b)
 
 ```haskell
 merge :: [Int] -> [Int] -> [Int]
@@ -93,7 +93,7 @@ merge (x:xs) (y:ys)
 
 ```
 
-#####(c)
+##### (c)
 
 Obviously, the call will never terminate. For infinite list, it will never
 achieve the base case, namely, `merge a []` or `merge b []`, so it will keep running
